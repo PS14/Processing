@@ -1,14 +1,17 @@
 color c1, c2, c3,c4;
 int count;
+int BlinkCount;                    // add
+color c;                           // add
 
 void setup(){
   size(1800,900);
   
-  c1 = color(0,0,255);
-    c2 = color(255,255,0);
-    c3 = color(255,0,0);
+  c1 = color(0,0,255);              // blue
+    c2 = color(255,255,0);          // yellow
+    c3 = color(255,0,0);            // red
     c4 = color(200,190,200);
     count = 0;
+    BlinkCount = 0;                 // add
 
   line(710,270,1355,270);
   line(710,270,550,0);
@@ -236,66 +239,82 @@ void setup(){
   
 }
 
+// --------------------------------------------
+//  Add
+//---------------------------------------------
+
   void draw(){
-    
+     count++;     
         //3
-         color c;
-    if((int)(count / 400) % 2  == 0) {
+    BlinkCount = count / 10 % 2;
+    if(0 <= count && count <= 60 * 5) {
       c = c1;
-     }else{
+     }
+     else{
       c = c4;
-    }
+     }
     fill(c);
     ellipse(370,125,30,30);
     ellipse(1340,315,30,30);
-    count++;
+
     
-    if((int)(count / 300) % 2 == 0) {
-      c = c4;
-    }else{
+    if(60 * 5 < count && count <= 60 * 7) {
       c = c2;
+    } else {
+      c = c4;
     }
+    
     fill(c);
      ellipse(430,125,30,30);
      ellipse(1400,315,30,30);
-    count++;
     
-    if((int)(count / 430) % 2 == 0) {
-      c = c4;
-     }else{
+    if(60 * 7 < count && count <= 60 * 10) {
       c = c3;
+     }else{
+      c = c4;
     }
+
     fill(c);
    ellipse(490,125,30,30);
    ellipse(1460,315,30,30);
-    count++;
-    
-    
-        //2-red
-        if(keyPressed){
-          if(key == ' '){
-            fill(200,190,200);
-          }
-        }else{
-          fill(0,0,255);
-        }
+   
+    if(0 <= count && count <= 60 * 2){
+      c = c1;
+    }
+    else if(60 * 2 < count && count <= 60 * 4){
+      if(BlinkCount == 0){
+        c = c1;
+      }
+      else if(BlinkCount == 1){
+        c = c4;
+      } 
+    }
+    else{
+      c = c4;
+    }
+       fill(c);
        rect(1550,390,40,40);
        rect(1470,170,40,40);
        rect(340,360,40,40);
        rect(235,175,40,40);
        
        //2-blue
-       if(keyPressed){
-          if(key == ' '){
-            fill(255,0,0);
-          }
-        }else{
-          fill(200,190,200);
-        }
+       if(60 * 4 < count && count <= 60 * 10){
+         c = c3;
+       }
+       else{
+         c = c4;
+       }
+       fill(c);
       rect(1550,345,40,40);
       rect(1470,125,40,40);
-       rect(340,310,40,40);
+      rect(340,310,40,40);
       rect(235,130,40,40);
+      
+    if(count == 60 * 10){
+      count = 0;
+      BlinkCount = 0;
+    }
 
 }
     
