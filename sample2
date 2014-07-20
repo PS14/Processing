@@ -1,0 +1,18 @@
+void setup(){
+  size(300,300);
+  
+}
+
+void draw(){
+  background(255);
+  
+float cx = 100;
+float cy = 100;
+float r = 25;
+
+fill(0);
+   text(mouseX,10,10);
+   text(mouseY,10,40);
+   text((mouseX-cx) * (mouseX-cx) + (mouseY-cy) * (mouseY-cy), 10, 60);
+   
+}
